@@ -3,11 +3,11 @@
  * https://github.com/swagger-api/swagger-codegen
  * Do not edit the class manually.
  */
-package com.accenture.api;
+package com.accenture.pacvivofinancestatus.api;
 
-import com.accenture.model.FinancialAccount;
-import com.accenture.model.FinancialAccountCreate;
-import com.accenture.model.FinancialAccountUpdate;
+import com.accenture.pacvivofinancestatus.model.FinancialAccount;
+import com.accenture.pacvivofinancestatus.model.FinancialAccountCreate;
+import com.accenture.pacvivofinancestatus.model.FinancialAccountUpdate;
 import io.swagger.annotations.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -20,7 +20,7 @@ import java.util.List;
 
 @Validated
 @Api(value = "financialAccount", description = "The financialAccount API")
-@RequestMapping(value = "/poc-vivo/accountManagement/v4/")
+@RequestMapping(value = "/accountManagement")
 public interface FinancialAccountApi {
 
     @ApiOperation(value = "Creates a FinancialAccount", nickname = "createFinancialAccount", notes = "This operation creates a FinancialAccount entity.", response = FinancialAccount.class, tags={ "financialAccount", })

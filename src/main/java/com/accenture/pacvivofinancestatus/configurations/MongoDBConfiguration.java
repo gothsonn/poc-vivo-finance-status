@@ -1,4 +1,4 @@
-package com.accenture.configurations;
+package com.accenture.pacvivofinancestatus.configurations;
 
 import com.mongodb.ConnectionString;
 import com.mongodb.client.MongoClient;

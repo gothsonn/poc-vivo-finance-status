@@ -1,4 +1,4 @@
-package com.accenture.model;
+package com.accenture.pacvivofinancestatus.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModel;
@@ -7,24 +7,34 @@ import org.springframework.validation.annotation.Validated;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 /**
- * An account of money owed by a party to another entity in exchange for goods or services that have been delivered or used. A financial (account receivable account/account payable) aggregates the amounts of one or more party accounts (billing or settlement) owned by a given party. It is a specialization of entity Account. Skipped properties: id,href,lastModified
+ * An account of money owed by a party to another entity in exchange for goods or services that have been delivered or used. A financial (account receivable account/account payable) aggregates the amounts of one or more party accounts (billing or settlement) owned by a given party. It is a specialization of entity Account.
  */
-@ApiModel(description = "An account of money owed by a party to another entity in exchange for goods or services that have been delivered or used. A financial (account receivable account/account payable) aggregates the amounts of one or more party accounts (billing or settlement) owned by a given party. It is a specialization of entity Account. Skipped properties: id,href,lastModified")
+@ApiModel(description = "An account of money owed by a party to another entity in exchange for goods or services that have been delivered or used. A financial (account receivable account/account payable) aggregates the amounts of one or more party accounts (billing or settlement) owned by a given party. It is a specialization of entity Account.")
 @Validated
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2022-11-06T21:16:01.493Z")
 
 
-public class FinancialAccountUpdate {
+public class FinancialAccount {
+  @JsonProperty("id")
+  private String id = null;
+
+  @JsonProperty("href")
+  private String href = null;
+
   @JsonProperty("accountType")
   private String accountType = null;
 
   @JsonProperty("description")
   private String description = null;
+
+  @JsonProperty("lastModified")
+  private OffsetDateTime lastModified = null;
 
   @JsonProperty("name")
   private String name = null;
@@ -64,7 +74,47 @@ public class FinancialAccountUpdate {
   @JsonProperty("@type")
   private String type = null;
 
-  public FinancialAccountUpdate accountType(String accountType) {
+  public FinancialAccount id(String id) {
+    this.id = id;
+    return this;
+  }
+
+  /**
+   * Unique identifier of the account
+   * @return id
+  **/
+  @ApiModelProperty(value = "Unique identifier of the account")
+
+
+  public String getId() {
+    return id;
+  }
+
+  public void setId(String id) {
+    this.id = id;
+  }
+
+  public FinancialAccount href(String href) {
+    this.href = href;
+    return this;
+  }
+
+  /**
+   * Unique reference of the account
+   * @return href
+  **/
+  @ApiModelProperty(value = "Unique reference of the account")
+
+
+  public String getHref() {
+    return href;
+  }
+
+  public void setHref(String href) {
+    this.href = href;
+  }
+
+  public FinancialAccount accountType(String accountType) {
     this.accountType = accountType;
     return this;
   }
@@ -84,7 +134,7 @@ public class FinancialAccountUpdate {
     this.accountType = accountType;
   }
 
-  public FinancialAccountUpdate description(String description) {
+  public FinancialAccount description(String description) {
     this.description = description;
     return this;
   }
@@ -104,7 +154,28 @@ public class FinancialAccountUpdate {
     this.description = description;
   }
 
-  public FinancialAccountUpdate name(String name) {
+  public FinancialAccount lastModified(OffsetDateTime lastModified) {
+    this.lastModified = lastModified;
+    return this;
+  }
+
+  /**
+   * Date of last modification of the account
+   * @return lastModified
+  **/
+  @ApiModelProperty(value = "Date of last modification of the account")
+
+  @Valid
+
+  public OffsetDateTime getLastModified() {
+    return lastModified;
+  }
+
+  public void setLastModified(OffsetDateTime lastModified) {
+    this.lastModified = lastModified;
+  }
+
+  public FinancialAccount name(String name) {
     this.name = name;
     return this;
   }
@@ -125,7 +196,7 @@ public class FinancialAccountUpdate {
     this.name = name;
   }
 
-  public FinancialAccountUpdate state(String state) {
+  public FinancialAccount state(String state) {
     this.state = state;
     return this;
   }
@@ -145,12 +216,12 @@ public class FinancialAccountUpdate {
     this.state = state;
   }
 
-  public FinancialAccountUpdate accountBalance(List<AccountBalance> accountBalance) {
+  public FinancialAccount accountBalance(List<AccountBalance> accountBalance) {
     this.accountBalance = accountBalance;
     return this;
   }
 
-  public FinancialAccountUpdate addAccountBalanceItem(AccountBalance accountBalanceItem) {
+  public FinancialAccount addAccountBalanceItem(AccountBalance accountBalanceItem) {
     if (this.accountBalance == null) {
       this.accountBalance = new ArrayList<AccountBalance>();
     }
@@ -174,12 +245,12 @@ public class FinancialAccountUpdate {
     this.accountBalance = accountBalance;
   }
 
-  public FinancialAccountUpdate accountRelationship(List<AccountRelationship> accountRelationship) {
+  public FinancialAccount accountRelationship(List<AccountRelationship> accountRelationship) {
     this.accountRelationship = accountRelationship;
     return this;
   }
 
-  public FinancialAccountUpdate addAccountRelationshipItem(AccountRelationship accountRelationshipItem) {
+  public FinancialAccount addAccountRelationshipItem(AccountRelationship accountRelationshipItem) {
     if (this.accountRelationship == null) {
       this.accountRelationship = new ArrayList<AccountRelationship>();
     }
@@ -203,12 +274,12 @@ public class FinancialAccountUpdate {
     this.accountRelationship = accountRelationship;
   }
 
-  public FinancialAccountUpdate contact(List<Contact> contact) {
+  public FinancialAccount contact(List<Contact> contact) {
     this.contact = contact;
     return this;
   }
 
-  public FinancialAccountUpdate addContactItem(Contact contactItem) {
+  public FinancialAccount addContactItem(Contact contactItem) {
     if (this.contact == null) {
       this.contact = new ArrayList<Contact>();
     }
@@ -232,7 +303,7 @@ public class FinancialAccountUpdate {
     this.contact = contact;
   }
 
-  public FinancialAccountUpdate creditLimit(Money creditLimit) {
+  public FinancialAccount creditLimit(Money creditLimit) {
     this.creditLimit = creditLimit;
     return this;
   }
@@ -253,12 +324,12 @@ public class FinancialAccountUpdate {
     this.creditLimit = creditLimit;
   }
 
-  public FinancialAccountUpdate relatedParty(List<RelatedParty> relatedParty) {
+  public FinancialAccount relatedParty(List<RelatedParty> relatedParty) {
     this.relatedParty = relatedParty;
     return this;
   }
 
-  public FinancialAccountUpdate addRelatedPartyItem(RelatedParty relatedPartyItem) {
+  public FinancialAccount addRelatedPartyItem(RelatedParty relatedPartyItem) {
     if (this.relatedParty == null) {
       this.relatedParty = new ArrayList<RelatedParty>();
     }
@@ -282,12 +353,12 @@ public class FinancialAccountUpdate {
     this.relatedParty = relatedParty;
   }
 
-  public FinancialAccountUpdate taxExemption(List<AccountTaxExemption> taxExemption) {
+  public FinancialAccount taxExemption(List<AccountTaxExemption> taxExemption) {
     this.taxExemption = taxExemption;
     return this;
   }
 
-  public FinancialAccountUpdate addTaxExemptionItem(AccountTaxExemption taxExemptionItem) {
+  public FinancialAccount addTaxExemptionItem(AccountTaxExemption taxExemptionItem) {
     if (this.taxExemption == null) {
       this.taxExemption = new ArrayList<AccountTaxExemption>();
     }
@@ -311,7 +382,7 @@ public class FinancialAccountUpdate {
     this.taxExemption = taxExemption;
   }
 
-  public FinancialAccountUpdate baseType(String baseType) {
+  public FinancialAccount baseType(String baseType) {
     this.baseType = baseType;
     return this;
   }
@@ -331,7 +402,7 @@ public class FinancialAccountUpdate {
     this.baseType = baseType;
   }
 
-  public FinancialAccountUpdate schemaLocation(String schemaLocation) {
+  public FinancialAccount schemaLocation(String schemaLocation) {
     this.schemaLocation = schemaLocation;
     return this;
   }
@@ -351,7 +422,7 @@ public class FinancialAccountUpdate {
     this.schemaLocation = schemaLocation;
   }
 
-  public FinancialAccountUpdate type(String type) {
+  public FinancialAccount type(String type) {
     this.type = type;
     return this;
   }
@@ -380,34 +451,40 @@ public class FinancialAccountUpdate {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    FinancialAccountUpdate financialAccountUpdate = (FinancialAccountUpdate) o;
-    return Objects.equals(this.accountType, financialAccountUpdate.accountType) &&
-        Objects.equals(this.description, financialAccountUpdate.description) &&
-        Objects.equals(this.name, financialAccountUpdate.name) &&
-        Objects.equals(this.state, financialAccountUpdate.state) &&
-        Objects.equals(this.accountBalance, financialAccountUpdate.accountBalance) &&
-        Objects.equals(this.accountRelationship, financialAccountUpdate.accountRelationship) &&
-        Objects.equals(this.contact, financialAccountUpdate.contact) &&
-        Objects.equals(this.creditLimit, financialAccountUpdate.creditLimit) &&
-        Objects.equals(this.relatedParty, financialAccountUpdate.relatedParty) &&
-        Objects.equals(this.taxExemption, financialAccountUpdate.taxExemption) &&
-        Objects.equals(this.baseType, financialAccountUpdate.baseType) &&
-        Objects.equals(this.schemaLocation, financialAccountUpdate.schemaLocation) &&
-        Objects.equals(this.type, financialAccountUpdate.type);
+    FinancialAccount financialAccount = (FinancialAccount) o;
+    return Objects.equals(this.id, financialAccount.id) &&
+        Objects.equals(this.href, financialAccount.href) &&
+        Objects.equals(this.accountType, financialAccount.accountType) &&
+        Objects.equals(this.description, financialAccount.description) &&
+        Objects.equals(this.lastModified, financialAccount.lastModified) &&
+        Objects.equals(this.name, financialAccount.name) &&
+        Objects.equals(this.state, financialAccount.state) &&
+        Objects.equals(this.accountBalance, financialAccount.accountBalance) &&
+        Objects.equals(this.accountRelationship, financialAccount.accountRelationship) &&
+        Objects.equals(this.contact, financialAccount.contact) &&
+        Objects.equals(this.creditLimit, financialAccount.creditLimit) &&
+        Objects.equals(this.relatedParty, financialAccount.relatedParty) &&
+        Objects.equals(this.taxExemption, financialAccount.taxExemption) &&
+        Objects.equals(this.baseType, financialAccount.baseType) &&
+        Objects.equals(this.schemaLocation, financialAccount.schemaLocation) &&
+        Objects.equals(this.type, financialAccount.type);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(accountType, description, name, state, accountBalance, accountRelationship, contact, creditLimit, relatedParty, taxExemption, baseType, schemaLocation, type);
+    return Objects.hash(id, href, accountType, description, lastModified, name, state, accountBalance, accountRelationship, contact, creditLimit, relatedParty, taxExemption, baseType, schemaLocation, type);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class FinancialAccountUpdate {\n");
+    sb.append("class FinancialAccount {\n");
     
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    href: ").append(toIndentedString(href)).append("\n");
     sb.append("    accountType: ").append(toIndentedString(accountType)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
+    sb.append("    lastModified: ").append(toIndentedString(lastModified)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    state: ").append(toIndentedString(state)).append("\n");
     sb.append("    accountBalance: ").append(toIndentedString(accountBalance)).append("\n");

@@ -1,8 +1,8 @@
-package com.accenture.api;
+package com.accenture.pacvivofinancestatus.api;
 
-import com.accenture.model.FinancialAccount;
-import com.accenture.model.FinancialAccountCreate;
-import com.accenture.model.FinancialAccountUpdate;
+import com.accenture.pacvivofinancestatus.model.FinancialAccount;
+import com.accenture.pacvivofinancestatus.model.FinancialAccountCreate;
+import com.accenture.pacvivofinancestatus.model.FinancialAccountUpdate;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.swagger.annotations.ApiParam;
 import org.slf4j.Logger;

@@ -1,33 +1,34 @@
-package com.accenture.model;
+package com.accenture.pacvivofinancestatus.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.springframework.validation.annotation.Validated;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.util.Objects;
 
 /**
- * Account reference. A account may be a party account or a financial account.
+ * AccountReceivable reference. An account of money owed by a party to another entity in exchange for goods or services that have been delivered or used. An account receivable aggregates the amounts of one or more party accounts (billing or settlement) owned by a given party.
  */
-@ApiModel(description = "Account reference. A account may be a party account or a financial account.")
+@ApiModel(description = "AccountReceivable reference. An account of money owed by a party to another entity in exchange for goods or services that have been delivered or used. An account receivable aggregates the amounts of one or more party accounts (billing or settlement) owned by a given party.")
 @Validated
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2022-11-06T21:16:01.493Z")
 
 
-public class AccountRef {
+public class FinancialAccountRef {
   @JsonProperty("id")
   private String id = null;
 
   @JsonProperty("href")
   private String href = null;
 
-  @JsonProperty("description")
-  private String description = null;
-
   @JsonProperty("name")
   private String name = null;
+
+  @JsonProperty("accountBalance")
+  private AccountBalance accountBalance = null;
 
   @JsonProperty("@baseType")
   private String baseType = null;
@@ -41,7 +42,7 @@ public class AccountRef {
   @JsonProperty("@referredType")
   private String referredType = null;
 
-  public AccountRef id(String id) {
+  public FinancialAccountRef id(String id) {
     this.id = id;
     return this;
   }
@@ -62,16 +63,16 @@ public class AccountRef {
     this.id = id;
   }
 
-  public AccountRef href(String href) {
+  public FinancialAccountRef href(String href) {
     this.href = href;
     return this;
   }
 
   /**
-   * Reference of the account
+   * Unique reference of the account
    * @return href
   **/
-  @ApiModelProperty(value = "Reference of the account")
+  @ApiModelProperty(value = "Unique reference of the account")
 
 
   public String getHref() {
@@ -82,27 +83,7 @@ public class AccountRef {
     this.href = href;
   }
 
-  public AccountRef description(String description) {
-    this.description = description;
-    return this;
-  }
-
-  /**
-   * Detailed description of the account
-   * @return description
-  **/
-  @ApiModelProperty(value = "Detailed description of the account")
-
-
-  public String getDescription() {
-    return description;
-  }
-
-  public void setDescription(String description) {
-    this.description = description;
-  }
-
-  public AccountRef name(String name) {
+  public FinancialAccountRef name(String name) {
     this.name = name;
     return this;
   }
@@ -122,7 +103,28 @@ public class AccountRef {
     this.name = name;
   }
 
-  public AccountRef baseType(String baseType) {
+  public FinancialAccountRef accountBalance(AccountBalance accountBalance) {
+    this.accountBalance = accountBalance;
+    return this;
+  }
+
+  /**
+   * Get accountBalance
+   * @return accountBalance
+  **/
+  @ApiModelProperty(value = "")
+
+  @Valid
+
+  public AccountBalance getAccountBalance() {
+    return accountBalance;
+  }
+
+  public void setAccountBalance(AccountBalance accountBalance) {
+    this.accountBalance = accountBalance;
+  }
+
+  public FinancialAccountRef baseType(String baseType) {
     this.baseType = baseType;
     return this;
   }
@@ -142,7 +144,7 @@ public class AccountRef {
     this.baseType = baseType;
   }
 
-  public AccountRef schemaLocation(String schemaLocation) {
+  public FinancialAccountRef schemaLocation(String schemaLocation) {
     this.schemaLocation = schemaLocation;
     return this;
   }
@@ -162,7 +164,7 @@ public class AccountRef {
     this.schemaLocation = schemaLocation;
   }
 
-  public AccountRef type(String type) {
+  public FinancialAccountRef type(String type) {
     this.type = type;
     return this;
   }
@@ -182,7 +184,7 @@ public class AccountRef {
     this.type = type;
   }
 
-  public AccountRef referredType(String referredType) {
+  public FinancialAccountRef referredType(String referredType) {
     this.referredType = referredType;
     return this;
   }
@@ -211,31 +213,31 @@ public class AccountRef {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    AccountRef accountRef = (AccountRef) o;
-    return Objects.equals(this.id, accountRef.id) &&
-        Objects.equals(this.href, accountRef.href) &&
-        Objects.equals(this.description, accountRef.description) &&
-        Objects.equals(this.name, accountRef.name) &&
-        Objects.equals(this.baseType, accountRef.baseType) &&
-        Objects.equals(this.schemaLocation, accountRef.schemaLocation) &&
-        Objects.equals(this.type, accountRef.type) &&
-        Objects.equals(this.referredType, accountRef.referredType);
+    FinancialAccountRef financialAccountRef = (FinancialAccountRef) o;
+    return Objects.equals(this.id, financialAccountRef.id) &&
+        Objects.equals(this.href, financialAccountRef.href) &&
+        Objects.equals(this.name, financialAccountRef.name) &&
+        Objects.equals(this.accountBalance, financialAccountRef.accountBalance) &&
+        Objects.equals(this.baseType, financialAccountRef.baseType) &&
+        Objects.equals(this.schemaLocation, financialAccountRef.schemaLocation) &&
+        Objects.equals(this.type, financialAccountRef.type) &&
+        Objects.equals(this.referredType, financialAccountRef.referredType);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, href, description, name, baseType, schemaLocation, type, referredType);
+    return Objects.hash(id, href, name, accountBalance, baseType, schemaLocation, type, referredType);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class AccountRef {\n");
+    sb.append("class FinancialAccountRef {\n");
     
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    href: ").append(toIndentedString(href)).append("\n");
-    sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    accountBalance: ").append(toIndentedString(accountBalance)).append("\n");
     sb.append("    baseType: ").append(toIndentedString(baseType)).append("\n");
     sb.append("    schemaLocation: ").append(toIndentedString(schemaLocation)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");

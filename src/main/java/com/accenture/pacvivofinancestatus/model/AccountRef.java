@@ -1,4 +1,4 @@
-package com.accenture.model;
+package com.accenture.pacvivofinancestatus.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModel;
@@ -9,25 +9,25 @@ import javax.validation.constraints.NotNull;
 import java.util.Objects;
 
 /**
- * Related Entity reference. A related party defines party or party role linked to a specific entity.
+ * Account reference. A account may be a party account or a financial account.
  */
-@ApiModel(description = "Related Entity reference. A related party defines party or party role linked to a specific entity.")
+@ApiModel(description = "Account reference. A account may be a party account or a financial account.")
 @Validated
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2022-11-06T21:16:01.493Z")
 
 
-public class RelatedParty {
+public class AccountRef {
   @JsonProperty("id")
   private String id = null;
 
   @JsonProperty("href")
   private String href = null;
 
+  @JsonProperty("description")
+  private String description = null;
+
   @JsonProperty("name")
   private String name = null;
-
-  @JsonProperty("role")
-  private String role = null;
 
   @JsonProperty("@baseType")
   private String baseType = null;
@@ -41,16 +41,16 @@ public class RelatedParty {
   @JsonProperty("@referredType")
   private String referredType = null;
 
-  public RelatedParty id(String id) {
+  public AccountRef id(String id) {
     this.id = id;
     return this;
   }
 
   /**
-   * Unique identifier of a related entity.
+   * Unique identifier of the account
    * @return id
   **/
-  @ApiModelProperty(required = true, value = "Unique identifier of a related entity.")
+  @ApiModelProperty(required = true, value = "Unique identifier of the account")
   @NotNull
 
 
@@ -62,16 +62,16 @@ public class RelatedParty {
     this.id = id;
   }
 
-  public RelatedParty href(String href) {
+  public AccountRef href(String href) {
     this.href = href;
     return this;
   }
 
   /**
-   * Reference of the related entity.
+   * Reference of the account
    * @return href
   **/
-  @ApiModelProperty(value = "Reference of the related entity.")
+  @ApiModelProperty(value = "Reference of the account")
 
 
   public String getHref() {
@@ -82,17 +82,36 @@ public class RelatedParty {
     this.href = href;
   }
 
-  public RelatedParty name(String name) {
+  public AccountRef description(String description) {
+    this.description = description;
+    return this;
+  }
+
+  /**
+   * Detailed description of the account
+   * @return description
+  **/
+  @ApiModelProperty(value = "Detailed description of the account")
+
+
+  public String getDescription() {
+    return description;
+  }
+
+  public void setDescription(String description) {
+    this.description = description;
+  }
+
+  public AccountRef name(String name) {
     this.name = name;
     return this;
   }
 
   /**
-   * Name of the related entity.
+   * Name of the account
    * @return name
   **/
-  @ApiModelProperty(required = true, value = "Name of the related entity.")
-  @NotNull
+  @ApiModelProperty(value = "Name of the account")
 
 
   public String getName() {
@@ -103,27 +122,7 @@ public class RelatedParty {
     this.name = name;
   }
 
-  public RelatedParty role(String role) {
-    this.role = role;
-    return this;
-  }
-
-  /**
-   * Role played by the related party
-   * @return role
-  **/
-  @ApiModelProperty(value = "Role played by the related party")
-
-
-  public String getRole() {
-    return role;
-  }
-
-  public void setRole(String role) {
-    this.role = role;
-  }
-
-  public RelatedParty baseType(String baseType) {
+  public AccountRef baseType(String baseType) {
     this.baseType = baseType;
     return this;
   }
@@ -143,7 +142,7 @@ public class RelatedParty {
     this.baseType = baseType;
   }
 
-  public RelatedParty schemaLocation(String schemaLocation) {
+  public AccountRef schemaLocation(String schemaLocation) {
     this.schemaLocation = schemaLocation;
     return this;
   }
@@ -163,7 +162,7 @@ public class RelatedParty {
     this.schemaLocation = schemaLocation;
   }
 
-  public RelatedParty type(String type) {
+  public AccountRef type(String type) {
     this.type = type;
     return this;
   }
@@ -183,7 +182,7 @@ public class RelatedParty {
     this.type = type;
   }
 
-  public RelatedParty referredType(String referredType) {
+  public AccountRef referredType(String referredType) {
     this.referredType = referredType;
     return this;
   }
@@ -192,8 +191,7 @@ public class RelatedParty {
    * The actual type of the target instance when needed for disambiguation.
    * @return referredType
   **/
-  @ApiModelProperty(required = true, value = "The actual type of the target instance when needed for disambiguation.")
-  @NotNull
+  @ApiModelProperty(value = "The actual type of the target instance when needed for disambiguation.")
 
 
   public String getReferredType() {
@@ -213,31 +211,31 @@ public class RelatedParty {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    RelatedParty relatedParty = (RelatedParty) o;
-    return Objects.equals(this.id, relatedParty.id) &&
-        Objects.equals(this.href, relatedParty.href) &&
-        Objects.equals(this.name, relatedParty.name) &&
-        Objects.equals(this.role, relatedParty.role) &&
-        Objects.equals(this.baseType, relatedParty.baseType) &&
-        Objects.equals(this.schemaLocation, relatedParty.schemaLocation) &&
-        Objects.equals(this.type, relatedParty.type) &&
-        Objects.equals(this.referredType, relatedParty.referredType);
+    AccountRef accountRef = (AccountRef) o;
+    return Objects.equals(this.id, accountRef.id) &&
+        Objects.equals(this.href, accountRef.href) &&
+        Objects.equals(this.description, accountRef.description) &&
+        Objects.equals(this.name, accountRef.name) &&
+        Objects.equals(this.baseType, accountRef.baseType) &&
+        Objects.equals(this.schemaLocation, accountRef.schemaLocation) &&
+        Objects.equals(this.type, accountRef.type) &&
+        Objects.equals(this.referredType, accountRef.referredType);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, href, name, role, baseType, schemaLocation, type, referredType);
+    return Objects.hash(id, href, description, name, baseType, schemaLocation, type, referredType);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class RelatedParty {\n");
+    sb.append("class AccountRef {\n");
     
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    href: ").append(toIndentedString(href)).append("\n");
+    sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    role: ").append(toIndentedString(role)).append("\n");
     sb.append("    baseType: ").append(toIndentedString(baseType)).append("\n");
     sb.append("    schemaLocation: ").append(toIndentedString(schemaLocation)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");

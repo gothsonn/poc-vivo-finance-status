@@ -1,8 +1,9 @@
-package com.accenture.configurations;
+package com.accenture.pacvivofinancestatus.configurations;
 
 import org.springframework.core.convert.converter.Converter;
-import org.threeten.bp.LocalDateTime;
-import org.threeten.bp.format.DateTimeFormatter;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class LocalDateTimeConverter implements Converter<String, LocalDateTime> {
     private final DateTimeFormatter formatter;

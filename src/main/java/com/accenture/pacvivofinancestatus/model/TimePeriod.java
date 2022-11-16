@@ -1,12 +1,12 @@
-package com.accenture.model;
+package com.accenture.pacvivofinancestatus.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.springframework.validation.annotation.Validated;
-import org.threeten.bp.OffsetDateTime;
 
 import javax.validation.Valid;
+import java.time.OffsetDateTime;
 import java.util.Objects;
 
 /**

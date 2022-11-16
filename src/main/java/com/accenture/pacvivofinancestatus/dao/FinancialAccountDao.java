@@ -1,7 +1,8 @@
-package com.accenture.dao;
+package com.accenture.pacvivofinancestatus.dao;
 
-import com.accenture.model.FinancialAccountRef;
-import com.accenture.utility.ApiHelper;
+import static com.mongodb.client.model.Updates.combine;
+import com.accenture.pacvivofinancestatus.model.FinancialAccountRef;
+import com.accenture.pacvivofinancestatus.utility.ApiHelper;
 import com.mongodb.MongoClientSettings;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoCollection;
@@ -21,7 +22,6 @@ import java.util.List;
 
 import static com.mongodb.client.model.Aggregates.*;
 import static com.mongodb.client.model.Filters.eq;
-import static com.mongodb.client.model.Updates.combine;
 import static com.mongodb.client.model.Updates.set;
 import static org.bson.codecs.configuration.CodecRegistries.fromProviders;
 import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;

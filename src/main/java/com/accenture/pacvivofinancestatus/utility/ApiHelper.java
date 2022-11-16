@@ -1,4 +1,4 @@
-package com.accenture.utility;
+package com.accenture.pacvivofinancestatus.utility;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.bson.conversions.Bson;

@@ -1,23 +1,22 @@
-package com.accenture.model;
+package com.accenture.pacvivofinancestatus.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.springframework.validation.annotation.Validated;
 
-import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.util.Objects;
 
 /**
- * AccountReceivable reference. An account of money owed by a party to another entity in exchange for goods or services that have been delivered or used. An account receivable aggregates the amounts of one or more party accounts (billing or settlement) owned by a given party.
+ * Related Entity reference. A related party defines party or party role linked to a specific entity.
  */
-@ApiModel(description = "AccountReceivable reference. An account of money owed by a party to another entity in exchange for goods or services that have been delivered or used. An account receivable aggregates the amounts of one or more party accounts (billing or settlement) owned by a given party.")
+@ApiModel(description = "Related Entity reference. A related party defines party or party role linked to a specific entity.")
 @Validated
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2022-11-06T21:16:01.493Z")
 
 
-public class FinancialAccountRef {
+public class RelatedParty {
   @JsonProperty("id")
   private String id = null;
 
@@ -27,8 +26,8 @@ public class FinancialAccountRef {
   @JsonProperty("name")
   private String name = null;
 
-  @JsonProperty("accountBalance")
-  private AccountBalance accountBalance = null;
+  @JsonProperty("role")
+  private String role = null;
 
   @JsonProperty("@baseType")
   private String baseType = null;
@@ -42,16 +41,16 @@ public class FinancialAccountRef {
   @JsonProperty("@referredType")
   private String referredType = null;
 
-  public FinancialAccountRef id(String id) {
+  public RelatedParty id(String id) {
     this.id = id;
     return this;
   }
 
   /**
-   * Unique identifier of the account
+   * Unique identifier of a related entity.
    * @return id
   **/
-  @ApiModelProperty(required = true, value = "Unique identifier of the account")
+  @ApiModelProperty(required = true, value = "Unique identifier of a related entity.")
   @NotNull
 
 
@@ -63,16 +62,16 @@ public class FinancialAccountRef {
     this.id = id;
   }
 
-  public FinancialAccountRef href(String href) {
+  public RelatedParty href(String href) {
     this.href = href;
     return this;
   }
 
   /**
-   * Unique reference of the account
+   * Reference of the related entity.
    * @return href
   **/
-  @ApiModelProperty(value = "Unique reference of the account")
+  @ApiModelProperty(value = "Reference of the related entity.")
 
 
   public String getHref() {
@@ -83,16 +82,17 @@ public class FinancialAccountRef {
     this.href = href;
   }
 
-  public FinancialAccountRef name(String name) {
+  public RelatedParty name(String name) {
     this.name = name;
     return this;
   }
 
   /**
-   * Name of the account
+   * Name of the related entity.
    * @return name
   **/
-  @ApiModelProperty(value = "Name of the account")
+  @ApiModelProperty(required = true, value = "Name of the related entity.")
+  @NotNull
 
 
   public String getName() {
@@ -103,28 +103,27 @@ public class FinancialAccountRef {
     this.name = name;
   }
 
-  public FinancialAccountRef accountBalance(AccountBalance accountBalance) {
-    this.accountBalance = accountBalance;
+  public RelatedParty role(String role) {
+    this.role = role;
     return this;
   }
 
   /**
-   * Get accountBalance
-   * @return accountBalance
+   * Role played by the related party
+   * @return role
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Role played by the related party")
 
-  @Valid
 
-  public AccountBalance getAccountBalance() {
-    return accountBalance;
+  public String getRole() {
+    return role;
   }
 
-  public void setAccountBalance(AccountBalance accountBalance) {
-    this.accountBalance = accountBalance;
+  public void setRole(String role) {
+    this.role = role;
   }
 
-  public FinancialAccountRef baseType(String baseType) {
+  public RelatedParty baseType(String baseType) {
     this.baseType = baseType;
     return this;
   }
@@ -144,7 +143,7 @@ public class FinancialAccountRef {
     this.baseType = baseType;
   }
 
-  public FinancialAccountRef schemaLocation(String schemaLocation) {
+  public RelatedParty schemaLocation(String schemaLocation) {
     this.schemaLocation = schemaLocation;
     return this;
   }
@@ -164,7 +163,7 @@ public class FinancialAccountRef {
     this.schemaLocation = schemaLocation;
   }
 
-  public FinancialAccountRef type(String type) {
+  public RelatedParty type(String type) {
     this.type = type;
     return this;
   }
@@ -184,7 +183,7 @@ public class FinancialAccountRef {
     this.type = type;
   }
 
-  public FinancialAccountRef referredType(String referredType) {
+  public RelatedParty referredType(String referredType) {
     this.referredType = referredType;
     return this;
   }
@@ -193,7 +192,8 @@ public class FinancialAccountRef {
    * The actual type of the target instance when needed for disambiguation.
    * @return referredType
   **/
-  @ApiModelProperty(value = "The actual type of the target instance when needed for disambiguation.")
+  @ApiModelProperty(required = true, value = "The actual type of the target instance when needed for disambiguation.")
+  @NotNull
 
 
   public String getReferredType() {
@@ -213,31 +213,31 @@ public class FinancialAccountRef {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    FinancialAccountRef financialAccountRef = (FinancialAccountRef) o;
-    return Objects.equals(this.id, financialAccountRef.id) &&
-        Objects.equals(this.href, financialAccountRef.href) &&
-        Objects.equals(this.name, financialAccountRef.name) &&
-        Objects.equals(this.accountBalance, financialAccountRef.accountBalance) &&
-        Objects.equals(this.baseType, financialAccountRef.baseType) &&
-        Objects.equals(this.schemaLocation, financialAccountRef.schemaLocation) &&
-        Objects.equals(this.type, financialAccountRef.type) &&
-        Objects.equals(this.referredType, financialAccountRef.referredType);
+    RelatedParty relatedParty = (RelatedParty) o;
+    return Objects.equals(this.id, relatedParty.id) &&
+        Objects.equals(this.href, relatedParty.href) &&
+        Objects.equals(this.name, relatedParty.name) &&
+        Objects.equals(this.role, relatedParty.role) &&
+        Objects.equals(this.baseType, relatedParty.baseType) &&
+        Objects.equals(this.schemaLocation, relatedParty.schemaLocation) &&
+        Objects.equals(this.type, relatedParty.type) &&
+        Objects.equals(this.referredType, relatedParty.referredType);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, href, name, accountBalance, baseType, schemaLocation, type, referredType);
+    return Objects.hash(id, href, name, role, baseType, schemaLocation, type, referredType);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class FinancialAccountRef {\n");
+    sb.append("class RelatedParty {\n");
     
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    href: ").append(toIndentedString(href)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    accountBalance: ").append(toIndentedString(accountBalance)).append("\n");
+    sb.append("    role: ").append(toIndentedString(role)).append("\n");
     sb.append("    baseType: ").append(toIndentedString(baseType)).append("\n");
     sb.append("    schemaLocation: ").append(toIndentedString(schemaLocation)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
