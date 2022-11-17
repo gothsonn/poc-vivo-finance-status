@@ -1,8 +1,7 @@
 package com.accenture.pacvivofinancestatus.api;
 
-import com.accenture.pacvivofinancestatus.model.FinancialAccount;
-import com.accenture.pacvivofinancestatus.model.FinancialAccountCreate;
-import com.accenture.pacvivofinancestatus.model.FinancialAccountUpdate;
+import com.accenture.pacvivofinancestatus.dao.FinancialAccountDao;
+import com.accenture.pacvivofinancestatus.model.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.swagger.annotations.ApiParam;
 import org.slf4j.Logger;
@@ -17,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2022-11-06T21:16:01.493Z")
 
@@ -29,26 +29,36 @@ public class FinancialAccountApiController implements FinancialAccountApi {
 
     private final HttpServletRequest request;
 
+    private final FinancialAccountDao financialAccountDao;
+
     @org.springframework.beans.factory.annotation.Autowired
-    public FinancialAccountApiController(ObjectMapper objectMapper, HttpServletRequest request) {
+    public FinancialAccountApiController(ObjectMapper objectMapper, HttpServletRequest request, FinancialAccountDao financialAccountDao) {
         this.objectMapper = objectMapper;
         this.request = request;
+        this.financialAccountDao = financialAccountDao;
     }
 
     public ResponseEntity<FinancialAccount> createFinancialAccount(
             @ApiParam(value = "The FinancialAccount to be created" ,required=true )
-            @Valid @RequestBody FinancialAccountCreate financialAccount
+            @Valid @RequestBody FinancialAccountCreate financialAccountCreate
     ) {
         String accept = request.getHeader("Accept");
         if (accept != null && accept.contains("application/json")) {
-            try {
-                return new ResponseEntity<FinancialAccount>(objectMapper.readValue("{\"empty\": false}", FinancialAccount.class), HttpStatus.NOT_IMPLEMENTED);
-            } catch (IOException e) {
-                log.error("Couldn't serialize response for content type application/json", e);
-                return new ResponseEntity<FinancialAccount>(HttpStatus.INTERNAL_SERVER_ERROR);
-            }
-        }
+//            FinancialAccountRef account = new FinancialAccountRef();
+//            account.setId(java.util.UUID.randomUUID().toString());
+//            account.setHref("ref"); // qual href vai colocar aqui...
+//            account.setName(financialAccountCreate.getName());
+//            account.setAccountBalance(financialAccountCreate.getAccountBalance().get(0)); //aqui e uma lista....
+//            account.setBaseType(financialAccountCreate.getBaseType());
+//            account.setSchemaLocation(financialAccountCreate.getSchemaLocation());
+//            account.setType(financialAccountCreate.getType());
+//            account.setReferredType("ReferredType"); // dentro do final tem RelatedParty que uma lista que entro tem referredType
 
+            var response = financialAccountDao.createFinancialAccount(financialAccountCreate);
+
+            return new ResponseEntity<FinancialAccount>(response, HttpStatus.CREATED);
+
+        }
         return new ResponseEntity<FinancialAccount>(HttpStatus.NOT_IMPLEMENTED);
     }
 
@@ -108,12 +118,8 @@ public class FinancialAccountApiController implements FinancialAccountApi {
     ) {
         String accept = request.getHeader("Accept");
         if (accept != null && accept.contains("application/json")) {
-            try {
-                return new ResponseEntity<FinancialAccount>(objectMapper.readValue("{\"empty\": false}", FinancialAccount.class), HttpStatus.NOT_IMPLEMENTED);
-            } catch (IOException e) {
-                log.error("Couldn't serialize response for content type application/json", e);
-                return new ResponseEntity<FinancialAccount>(HttpStatus.INTERNAL_SERVER_ERROR);
-            }
+            var response = financialAccountDao.getFinancialAccount(id, fields);
+            return new ResponseEntity<FinancialAccount>(response, HttpStatus.OK);
         }
 
         return new ResponseEntity<FinancialAccount>(HttpStatus.NOT_IMPLEMENTED);

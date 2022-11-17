@@ -1,7 +1,11 @@
 package com.accenture.pacvivofinancestatus.dao;
 
 import static com.mongodb.client.model.Updates.combine;
+
+import com.accenture.pacvivofinancestatus.model.FinancialAccount;
+import com.accenture.pacvivofinancestatus.model.FinancialAccountCreate;
 import com.accenture.pacvivofinancestatus.model.FinancialAccountRef;
+import com.accenture.pacvivofinancestatus.model.FinancialAccountUpdate;
 import com.accenture.pacvivofinancestatus.utility.ApiHelper;
 import com.mongodb.MongoClientSettings;
 import com.mongodb.client.MongoClient;
@@ -17,6 +21,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,12 +35,12 @@ import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
 public class FinancialAccountDao {
 
     private static String FINANCIAL_ACCOUNT_COLLECTION_NAME = "financialAccounts";
-    private MongoCollection<FinancialAccountRef> collection;
+    private MongoCollection<FinancialAccount> collection;
     private CodecRegistry registry;
     private Integer defaultLimit = 0;
 
     private final CodecProvider financialAccountProvider = PojoCodecProvider.builder()
-            .register(FinancialAccountRef.class.getPackage().getName())
+            .register(FinancialAccount.class.getPackage().getName())
             .build();
 
     @Autowired
@@ -46,12 +51,12 @@ public class FinancialAccountDao {
 
         defaultLimit = limit;
         collection = mongoClient.getDatabase(databaseName).
-                getCollection(FINANCIAL_ACCOUNT_COLLECTION_NAME, FinancialAccountRef.class)
+                getCollection(FINANCIAL_ACCOUNT_COLLECTION_NAME, FinancialAccount.class)
                 .withCodecRegistry(registry);
     }
 
-    public List<FinancialAccountRef> getFinancialAccounts(String fields, Integer skip, Integer limit) {
-        var accounts = new ArrayList<FinancialAccountRef>();
+    public List<FinancialAccount> getFinancialAccounts(String fields, Integer skip, Integer limit) {
+        var accounts = new ArrayList<FinancialAccount>();
 
         if (skip == null) {
             skip = 0;
@@ -75,7 +80,7 @@ public class FinancialAccountDao {
         return accounts;
     }
 
-    public FinancialAccountRef getFinancialAccount(String id, String fields) {
+    public FinancialAccount getFinancialAccount(String id, String fields) {
         var projectStage = ApiHelper.createProjectStageFromFieldList(fields);
 
         var pipeline = new ArrayList<Bson>();
@@ -96,31 +101,28 @@ public class FinancialAccountDao {
     }
 
 
-    public FinancialAccountRef createFinancialAccount(FinancialAccountRef financialAccountCreate) {
-        var account = new FinancialAccountRef();
+    public FinancialAccount createFinancialAccount(FinancialAccountCreate financialAccountCreate) {
+        var account = new FinancialAccount();
 
         account.setId(java.util.UUID.randomUUID().toString());
-//        account.setAccountType(financialAccountCreate.getAccountType());
-//        account.setDescription(financialAccountCreate.getDescription());
-//        account.setLastModified(LocalDateTime.now());
-//        account.setName(financialAccountCreate.getName());
-//        account.setState(financialAccountCreate.getState());
-//        account.setAccountBalance(financialAccountCreate.getAccountBalance());
-//        account.setAccountRelationship(financialAccountCreate.getAccountRelationship());
-//        account.setContact(financialAccountCreate.getContact());
-//        account.setCreditLimit(financialAccountCreate.getCreditLimit());
-//        account.setRelatedParty(financialAccountCreate.getRelatedParty());
-//        account.setTaxExemption(financialAccountCreate.getTaxExemption());
-//        account.setAtBaseType(financialAccountCreate.getAtBaseType());
-//        account.setAtSchemaLocation(financialAccountCreate.getAtSchemaLocation());
-//        account.setAtType(financialAccountCreate.getAtType());
+        account.setAccountType(financialAccountCreate.getAccountType());
+        account.setDescription(financialAccountCreate.getDescription());
+        account.setLastModified(OffsetDateTime.now());
+        account.setName(financialAccountCreate.getName());
+        account.setState(financialAccountCreate.getState());
+        account.setAccountBalance(financialAccountCreate.getAccountBalance());
+        account.setAccountRelationship(financialAccountCreate.getAccountRelationship());
+        account.setContact(financialAccountCreate.getContact());
+        account.setCreditLimit(financialAccountCreate.getCreditLimit());
+        account.setRelatedParty(financialAccountCreate.getRelatedParty());
+        account.setTaxExemption(financialAccountCreate.getTaxExemption());
 
         collection.insertOne(account);
 
         return account;
     }
 
-    public FinancialAccountRef updateFinancialAccount(String id, FinancialAccountRef financialAccountUpdate) {
+    public FinancialAccount updateFinancialAccount(String id, FinancialAccountUpdate financialAccountUpdate) {
 
         var updates = ApiHelper.convertUpdateObjectToUpdateExpr(financialAccountUpdate);
 
