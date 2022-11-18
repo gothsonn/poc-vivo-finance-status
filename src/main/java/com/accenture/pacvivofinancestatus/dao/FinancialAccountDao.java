@@ -1,16 +1,10 @@
 package com.accenture.pacvivofinancestatus.dao;
 
-import static com.mongodb.client.model.Updates.combine;
-
 import com.accenture.pacvivofinancestatus.model.FinancialAccount;
-import com.accenture.pacvivofinancestatus.model.FinancialAccountCreate;
-import com.accenture.pacvivofinancestatus.model.FinancialAccountUpdate;
 import com.accenture.pacvivofinancestatus.utility.ApiHelper;
 import com.mongodb.MongoClientSettings;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoCollection;
-import com.mongodb.client.model.FindOneAndUpdateOptions;
-import com.mongodb.client.model.ReturnDocument;
 import org.bson.codecs.configuration.CodecProvider;
 import org.bson.codecs.configuration.CodecRegistry;
 import org.bson.codecs.pojo.PojoCodecProvider;
@@ -19,14 +13,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDateTime;
-import java.time.OffsetDateTime;
 import java.util.ArrayList;
-import java.util.List;
 
 import static com.mongodb.client.model.Aggregates.*;
 import static com.mongodb.client.model.Filters.eq;
-import static com.mongodb.client.model.Updates.set;
 import static org.bson.codecs.configuration.CodecRegistries.fromProviders;
 import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
 
