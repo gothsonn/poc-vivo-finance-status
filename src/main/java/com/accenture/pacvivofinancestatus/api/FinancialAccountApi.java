@@ -31,8 +31,6 @@ public interface FinancialAccountApi {
         @ApiResponse(code = 409, message = "Conflict", response = Error.class),
         @ApiResponse(code = 500, message = "Internal Server Error", response = Error.class) })
     @RequestMapping(value = "/financialAccount/{id}",
-        produces = { "application/json;charset=utf-8" }, 
-        consumes = { "application/json;charset=utf-8" },
         method = RequestMethod.GET)
     ResponseEntity<FinancialAccount> retrieveFinancialAccount(
             @ApiParam(value = "Identifier of the FinancialAccount",required=true)
