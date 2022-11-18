@@ -4,7 +4,6 @@ import static com.mongodb.client.model.Updates.combine;
 
 import com.accenture.pacvivofinancestatus.model.FinancialAccount;
 import com.accenture.pacvivofinancestatus.model.FinancialAccountCreate;
-import com.accenture.pacvivofinancestatus.model.FinancialAccountRef;
 import com.accenture.pacvivofinancestatus.model.FinancialAccountUpdate;
 import com.accenture.pacvivofinancestatus.utility.ApiHelper;
 import com.mongodb.MongoClientSettings;
@@ -55,31 +54,6 @@ public class FinancialAccountDao {
                 .withCodecRegistry(registry);
     }
 
-    public List<FinancialAccount> getFinancialAccounts(String fields, Integer skip, Integer limit) {
-        var accounts = new ArrayList<FinancialAccount>();
-
-        if (skip == null) {
-            skip = 0;
-        }
-        if (limit == null || limit == 0) {
-            limit = defaultLimit;
-        }
-        var projectStage = ApiHelper.createProjectStageFromFieldList(fields);
-
-        var pipeline = new ArrayList<Bson>();
-
-        pipeline.add(skip(skip));
-        pipeline.add(limit(limit));
-
-        if (projectStage != null) {
-            pipeline.add(projectStage);
-        }
-
-        collection.aggregate(pipeline).iterator().forEachRemaining(accounts::add);
-
-        return accounts;
-    }
-
     public FinancialAccount getFinancialAccount(String id, String fields) {
         var projectStage = ApiHelper.createProjectStageFromFieldList(fields);
 
@@ -96,46 +70,4 @@ public class FinancialAccountDao {
         return account;
     }
 
-    public void deleteFinancialAccount(String id) {
-        collection.deleteOne(eq("_id", id));
-    }
-
-
-    public FinancialAccount createFinancialAccount(FinancialAccountCreate financialAccountCreate) {
-        var account = new FinancialAccount();
-
-        account.setId(java.util.UUID.randomUUID().toString());
-        account.setAccountType(financialAccountCreate.getAccountType());
-        account.setDescription(financialAccountCreate.getDescription());
-        account.setLastModified(OffsetDateTime.now());
-        account.setName(financialAccountCreate.getName());
-        account.setState(financialAccountCreate.getState());
-        account.setAccountBalance(financialAccountCreate.getAccountBalance());
-        account.setAccountRelationship(financialAccountCreate.getAccountRelationship());
-        account.setContact(financialAccountCreate.getContact());
-        account.setCreditLimit(financialAccountCreate.getCreditLimit());
-        account.setRelatedParty(financialAccountCreate.getRelatedParty());
-        account.setTaxExemption(financialAccountCreate.getTaxExemption());
-
-        collection.insertOne(account);
-
-        return account;
-    }
-
-    public FinancialAccount updateFinancialAccount(String id, FinancialAccountUpdate financialAccountUpdate) {
-
-        var updates = ApiHelper.convertUpdateObjectToUpdateExpr(financialAccountUpdate);
-
-        if (!updates.isEmpty()) {
-            updates.add(set("lastModified", LocalDateTime.now()));
-            var account = collection.findOneAndUpdate(
-                    eq("_id", id),
-                    combine(updates),
-                    new FindOneAndUpdateOptions().returnDocument(ReturnDocument.AFTER)
-            );
-            return account;
-        }
-
-        return null;
-    }
 }
