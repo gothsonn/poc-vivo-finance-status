@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: finance-status
-        image: nexus.devops.dvpoc.com.br/finance-status
+        image: registry.devops.dvpoc.com.br/finance-status
         ports:
         - containerPort: 9000
         envFrom:
