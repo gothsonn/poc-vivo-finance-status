@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: finance-status
-        image: registry.devops.7f8254f4188647b4be19.eastus.aksapp.io/finance-status
+        image: nexus.devops.dvpoc.com.br/finance-status
         ports:
         - containerPort: 9000
         envFrom:
@@ -47,7 +47,7 @@ spec:
   gateways:
     - default/default
   hosts:
-  - finance-status.istio.7f8254f4188647b4be19.eastus.aksapp.io
+  - finance-status.istio.dvpoc.com.br
   http:
   - name: "http-routes"
     match:
