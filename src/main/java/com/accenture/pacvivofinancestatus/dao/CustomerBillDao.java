@@ -28,14 +28,14 @@ public class CustomerBillDao {
     private CodecRegistry registry;
     private Integer defaultLimit = 0;
 
-    private final CodecProvider financialAccountProvider = PojoCodecProvider.builder()
+    private final CodecProvider customerBillProvider = PojoCodecProvider.builder()
             .register(FinancialAccount.class.getPackage().getName())
             .build();
 
     @Autowired
     public CustomerBillDao(MongoClient mongoClient, @Value("${db.dbname}") String databaseName, @Value("${db.defaultLimit}") Integer limit) {
         this.registry = fromRegistries(MongoClientSettings.getDefaultCodecRegistry(),
-                fromProviders(financialAccountProvider),
+                fromProviders(customerBillProvider),
                 fromProviders(PojoCodecProvider.builder().automatic(true).build()));
 
         defaultLimit = limit;
