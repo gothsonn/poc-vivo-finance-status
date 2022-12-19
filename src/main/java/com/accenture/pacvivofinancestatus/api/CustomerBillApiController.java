@@ -15,11 +15,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-import java.io.IOException;
-import java.time.OffsetDateTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
 
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2022-12-17T13:51:37.299Z")
 
@@ -44,26 +39,6 @@ public class CustomerBillApiController implements CustomerBillApi {
         this.customerBillRepository = customerBillRepository;
     }
 
-    public ResponseEntity<List<CustomerBill>> listCustomerBill(
-            @ApiParam(value = "Comma-separated properties to be provided in response")
-            @Valid @RequestParam(value = "fields", required = false) String fields,
-            @ApiParam(value = "Requested index for start of resources to be provided in response")
-            @Valid @RequestParam(value = "offset", required = false) Integer offset,
-            @ApiParam(value = "Requested number of resources to be provided in response")
-            @Valid @RequestParam(value = "limit", required = false) Integer limit
-    ) {
-        String accept = request.getHeader("Accept");
-        if (accept != null && accept.contains("application/json")) {
-            try {
-                return new ResponseEntity<List<CustomerBill>>(objectMapper.readValue("{}", List.class), HttpStatus.NOT_IMPLEMENTED);
-            } catch (IOException e) {
-                log.error("Couldn't serialize response for content type application/json", e);
-                return new ResponseEntity<List<CustomerBill>>(HttpStatus.INTERNAL_SERVER_ERROR);
-            }
-        }
-
-        return new ResponseEntity<List<CustomerBill>>(HttpStatus.NOT_IMPLEMENTED);
-    }
 
     public ResponseEntity<CustomerBill> retrieveCustomerBill(
             @ApiParam(value = "Identifier of the CustomerBill",required=true)
